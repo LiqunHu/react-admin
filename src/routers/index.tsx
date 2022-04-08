@@ -1,15 +1,15 @@
 // import React from 'react'
-import { Component, lazy, Suspense } from 'react'
+import { lazy, Suspense } from 'react'
 import { useRoutes } from 'react-router-dom'
-import { Spin } from 'antd'
+// import { Spin } from 'antd'
 import Home from '@/views/Home'
 // import Login from '@/views/Login'
 // import Board from '@/views/Board'
 import Nomatch from '@/views/Nomatch'
 const Login = lazy(() => import('@/views/Login'))
 
-const load = (children: any) => {
-  return <Suspense fallback={<Spin tip="Loading..." />}>{children}</Suspense>
+const load = (children: JSX.Element) => {
+  return <Suspense fallback="">{children}</Suspense>
 }
 
 const routeList = [

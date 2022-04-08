@@ -1,20 +1,31 @@
 import React, { useState, useEffect } from 'react'
 import { Form, Input, Button } from 'antd'
+import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import request from '@/utils/request'
+import common from '@/utils/common'
 import './login.css'
 
 function Login() {
-  const [logindata, setLogindata] = useState({})
-  const onLogin = async () => {
+  const [logindata] = useState({})
+  const [loginForm] = Form.useForm()
+
+  const onLogin = async (values: any) => {
     try {
-      let response = await request.post('/v1/api/node/auth/signin', {
-        identify_code: 'Sxc6dbdIeNEMnj1nCF6ZaA==',
+      const encInfo = common.aesEncryptModeCFB(values.username, values.password)
+      // let response = await request.post('/v1/api/node/auth/signin', {
+      //   identify_code: 'Sxc6dbdIeNEMnj1nCF6ZaA==',
+      //   login_type: 'ADMIN',
+      //   magic_no: '1b4be3e317826d0c9ca2e8b54bd04710',
+      //   username: '18698729476',
+      // })
+      const response = await request.post('/v1/api/node/auth/signin', {
+        username: values.username,
+        identify_code: encInfo[1],
+        magic_no: encInfo[0],
         login_type: 'ADMIN',
-        magic_no: '1b4be3e317826d0c9ca2e8b54bd04710',
-        username: '18698729476',
       })
+
       console.log(response)
-      setLogindata(response)
     } catch (error) {
       console.error(error)
     }
@@ -23,16 +34,16 @@ function Login() {
     <div className="login-wrap">
       <div className="ms-login">
         <div className="ms-title">后台管理系统</div>
-        <Form onFinish={onLogin}>
-          <Form.Item label="" name="username" rules={[{ required: true, message: '请输入用户名!' }]}>
-            <Input />
+        <Form form={loginForm} name="loginForm" className="ms-content" onFinish={onLogin}>
+          <Form.Item name="username" rules={[{ required: true, message: '请输入用户名!' }]}>
+            <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="用户名" />
           </Form.Item>
 
-          <Form.Item label="" name="password" rules={[{ required: true, message: '请输入密码!' }]}>
-            <Input.Password />
+          <Form.Item name="password" rules={[{ required: true, message: '请输入密码!' }]}>
+            <Input.Password prefix={<LockOutlined className="site-form-item-icon" />} placeholder="密码" />
           </Form.Item>
-          <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-            <Button type="primary">
+          <Form.Item className="login-btn">
+            <Button type="primary" htmlType="submit">
               登陆
             </Button>
           </Form.Item>

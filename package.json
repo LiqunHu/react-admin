@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
+    "@fortawesome/fontawesome-free": "^6.1.1",
+    "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
@@ -13,8 +16,12 @@
     "@types/react-router-dom": "^5.3.3",
     "antd": "^4.19.5",
     "axios": "^0.21.1",
+    "crypto-js": "^4.1.1",
+    "dayjs": "^1.11.0",
+    "lodash": "^4.17.21",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-redux": "^7.2.8",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
     "typescript": "^4.6.3",
@@ -44,8 +51,10 @@
     ]
   },
   "devDependencies": {
+    "@types/crypto-js": "^4.1.1",
+    "@types/lodash": "^4.14.181",
+    "babel-plugin-import": "^1.13.3",
     "customize-cra": "^1.0.0",
-    "react-app-rewired": "^2.2.1",
-    "babel-plugin-import": "^1.13.3"
+    "react-app-rewired": "^2.2.1"
   }
 }
