@@ -1,8 +1,7 @@
-import React from "react";
-import { Layout } from "antd";
-import "./style.css";
+import { Layout } from 'antd'
+import './style.css'
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Header, Footer, Sider, Content } = Layout
 
 function Home() {
   return (
@@ -10,7 +9,7 @@ function Home() {
       <Header className="Header">Header</Header>
       <Content className="Content">Content</Content>
     </Layout>
-  );
+  )
 }
 
-export default Home;
+export default Home

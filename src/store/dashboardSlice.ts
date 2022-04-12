@@ -27,11 +27,14 @@ export const dashboardSlice = createSlice({
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
     login: (state, action: PayloadAction<any>) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      return { ...state, ...action.payload }
+      common.clearStoreData()
+      common.setStoreData('token', action.payload.Authorization)
+      common.setStoreData('userinfo', action.payload)
+      state.userInfo = action.payload
+      // return { ...state, ...action.payload }
+    },
+    changeCollapse: (state, action: PayloadAction<any>) => {
+      state.collapse = action.payload
     },
   },
   // The `extraReducers` field lets the slice handle actions defined elsewhere,
@@ -51,7 +54,7 @@ export const dashboardSlice = createSlice({
   //   },
 })
 
-export const { login } = dashboardSlice.actions
+export const { login, changeCollapse } = dashboardSlice.actions
 
 export const getUserInfo = (state: AppState) => state.dashboard.userInfo
 

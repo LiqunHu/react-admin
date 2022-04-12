@@ -1,19 +1,19 @@
-import './login.css'
+import './style.css'
 import React, { useState, useEffect } from 'react'
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { Form, Input, Button } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import request from '@/utils/request'
 import common from '@/utils/common'
-import {login} from '@/store/dashboardSlice'
+import { login } from '@/store/dashboardSlice'
 
 function Login() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [logindata] = useState({})
   const [loginForm] = Form.useForm()
-  
+
   const onLogin = async (values: any) => {
     try {
       const encInfo = common.aesEncryptModeCFB(values.username, values.password)
@@ -35,7 +35,7 @@ function Login() {
           userInfo.avatar = '/static/images/base/head.jpg'
         }
         await dispatch(login(userInfo))
-        navigate("/dashbard/home")
+        navigate('/dashboard/home')
       } else {
         console.log('no Authorization')
       }
