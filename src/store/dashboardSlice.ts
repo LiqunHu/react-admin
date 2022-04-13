@@ -3,7 +3,7 @@ import { AppState, AppThunk } from '@/store'
 import common from '@/utils/common'
 
 export interface CounterState {
-  userInfo: Object
+  userInfo: any
   collapse: boolean
   tagsList: any
 }

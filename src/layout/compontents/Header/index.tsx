@@ -9,12 +9,24 @@ import { changeCollapse } from '@/store/dashboardSlice'
 function Header() {
   const dispatch = useDispatch()
   const collapse = useSelector((state: AppState) => state.dashboard.collapse)
-  const userInfo: any = useSelector((state: AppState) => state.dashboard.userInfo)
+  const userInfo = useSelector((state: AppState) => state.dashboard.userInfo)
   const [messageCount] = useState(1)
 
   const handleChangeCollapse = () => {
     dispatch(changeCollapse(!collapse))
   }
+
+  const menu = (
+    <Menu>
+      <Menu.Item key="mail">
+        <a target="_blank">项目仓库</a>
+      </Menu.Item>
+      <Menu.Item key="personal">
+        <a target="_blank">个人中心</a>
+      </Menu.Item>
+      <Menu.Item key="exit">退出登录</Menu.Item>
+    </Menu>
+  )
 
   return (
     <div className="header">
@@ -30,13 +42,13 @@ function Header() {
                 <i className="fa-regular fa-bell"></i>
               </Link>
             </Tooltip>
-            {messageCount ? <span className="btn-bell-badge"></span> : <div></div>}
+            {messageCount ? <span className="btn-bell-badge"></span> : null}
           </div>
 
           <div className="user-avator">
             <img src={userInfo.avatar} />
           </div>
-          <Dropdown className="user-name" overlay={<div></div>}>
+          <Dropdown className="user-name" overlay={menu}>
             <span className="el-dropdown-link">
               {userInfo.name}
               <i className="el-icon-caret-bottom"></i>
