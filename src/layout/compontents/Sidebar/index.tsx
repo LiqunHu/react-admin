@@ -9,7 +9,6 @@ function Sidebar() {
   const userInfo = useSelector((state: AppState) => state.dashboard.userInfo)
 
   const defaultOpenKeys = userInfo.menulist.length > 0 ? [userInfo.menulist[0].menu_id + ''] : []
-  console.log(defaultOpenKeys)
 
   const genMenu = (menus: any) => {
     return menus.map((item: any) =>

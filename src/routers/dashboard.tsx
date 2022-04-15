@@ -13,7 +13,6 @@ const dashboard = [
     children: [
       {
         path: 'home',
-        key: 'home',
         element: load(<Home />),
         meta: {
           title: '首页',

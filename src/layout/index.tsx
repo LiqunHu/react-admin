@@ -3,6 +3,7 @@ import { Layout } from 'antd'
 import { Outlet } from 'react-router-dom'
 import VHeader from './compontents/Header'
 import VSidebar from './compontents/Sidebar'
+import VTags from './compontents/Tags'
 
 const { Header, Sider, Content } = Layout
 
@@ -16,7 +17,8 @@ function PublicLayout() {
         <Sider>
           <VSidebar />
         </Sider>
-        <Content>
+        <Content className="content">
+          <VTags/>
           qweqwe
           <Outlet />
         </Content>

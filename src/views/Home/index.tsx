@@ -1,14 +1,10 @@
-import { Layout } from 'antd'
 import './style.css'
-
-const { Header, Footer, Sider, Content } = Layout
 
 function Home() {
   return (
-    <Layout className="Page">
-      <Header className="Header">Header</Header>
-      <Content className="Content">Content</Content>
-    </Layout>
+    <div>
+      <h3>Board</h3>
+    </div>
   )
 }
 

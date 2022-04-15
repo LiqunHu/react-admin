@@ -16,12 +16,10 @@ const load = (children: JSX.Element) => {
 const routeList = [
   {
     path: '/',
-    key: 'home',
     element: <Home />,
   },
   {
     path: '/login',
-    key: 'login',
     element: load(<Login />),
     meta: {
       title: '登陆页',

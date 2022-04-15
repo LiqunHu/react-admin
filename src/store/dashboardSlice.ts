@@ -5,7 +5,11 @@ import common from '@/utils/common'
 export interface CounterState {
   userInfo: any
   collapse: boolean
-  tagsList: any
+  tagsList: {
+    name: string
+    title: string
+    path: string
+  }[]
 }
 
 const initialState: CounterState = { userInfo: common.getStoreData('userinfo') || {}, collapse: false, tagsList: [] }
