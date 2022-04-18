@@ -2,13 +2,13 @@ import './style.css'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Button, Menu, Dropdown } from 'antd'
-import { Link, useLocation, useMatch } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { AppState } from '@/store'
+import { getCurrentRouter } from '@/routers'
 
 function Tags() {
   const tagsList = useSelector((state: AppState) => state.dashboard.tagsList)
   const location = useLocation()
-  const match = useMatch(location.pathname)
 
   const clickItem = (item: any) => {
     console.log(`Click on item ${item}`)
@@ -35,9 +35,9 @@ function Tags() {
   }
 
   useEffect(() => {
-    // let match = useMatch(location.pathname)
     console.log(location)
-    console.log(match)
+    let router = getCurrentRouter(location.pathname)
+    console.log(router)
   }, [location])
 
   return (
