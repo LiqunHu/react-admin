@@ -4,9 +4,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Button, Menu, Dropdown } from 'antd'
 import { Link, useLocation } from 'react-router-dom'
 import { AppState } from '@/store'
+import { setTagsItem, delTagsItem } from '@/store/dashboardSlice'
 import { getCurrentRouter } from '@/routers'
 
 function Tags() {
+  const dispatch = useDispatch()
   const tagsList = useSelector((state: AppState) => state.dashboard.tagsList)
   const location = useLocation()
 
@@ -22,8 +24,8 @@ function Tags() {
   )
 
   const genTags = () => {
-    return tagsList.map((item) => (
-      <li className="tags-li">
+    return tagsList.map((item, index) => (
+      <li className="tags-li" key={index}>
         <Link to={item.path} className="tags-li-title">
           {item.title}
         </Link>
@@ -34,10 +36,27 @@ function Tags() {
     ))
   }
 
+  const setTags = (route: any) => {
+    const isExist = tagsList.some((item: any) => {
+      return item.path === route.path
+    })
+    if (!isExist) {
+      if (tagsList.length >= 8) {
+        dispatch(delTagsItem({ index: 0 }))
+      }
+      dispatch(setTagsItem({title: route.title, path: route.path}))
+    }
+  }
+
   useEffect(() => {
     console.log(location)
     let router = getCurrentRouter(location.pathname)
-    console.log(router)
+    if(router) {
+      setTags({
+        title: router.title,
+        path: location.pathname
+      })
+    }
   }, [location])
 
   return (
