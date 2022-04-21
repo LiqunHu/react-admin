@@ -60,7 +60,7 @@ function SystemApiControl() {
   }
 
   const addFolderModal = () => {
-    setWorkPara({})
+    folderForm.resetFields()
     action = 'add'
     if (_.isEmpty(actNode)) {
       return common.warning('请选择一个目录')
@@ -98,12 +98,16 @@ function SystemApiControl() {
         />
       </div>
       <Modal title="目录" centered visible={folderModalV} onCancel={() => setFolderModalV(false)} width={500}>
-        <Form name="folderForm" labelCol={{ span: 4 }}>
+        <Form form={folderForm} name="folderForm" labelCol={{ span: 4 }}>
           <Form.Item label="目录名称" name="systemmenu_name" rules={[{ required: true, message: '缺少名称' }]}>
-            <Input/>
+            <Input />
           </Form.Item>
           <Form.Item label="图标" name="systemmenu_icon" rules={[{ required: true, message: '缺少图标' }]}>
-            <Input/>
+            <Input.Search
+              onSearch={() => {
+                console.log('3333333')
+              }}
+            />
           </Form.Item>
         </Form>
       </Modal>
