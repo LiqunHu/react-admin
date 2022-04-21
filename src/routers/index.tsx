@@ -6,6 +6,7 @@ import Home from '@/views/Home'
 // import Login from '@/views/Login'
 // import Board from '@/views/Board'
 import Nomatch from '@/views/Nomatch'
+import admin from './admin'
 import dashboard from './dashboard'
 const Login = lazy(() => import('@/views/Login'))
 
@@ -27,6 +28,7 @@ const routeList = [
       title: '登陆页',
     },
   },
+  ...admin,
   ...dashboard,
   {
     path: '*',
@@ -46,9 +48,9 @@ const router2map = (rList: any, pUrl: string) => {
   rList.forEach((item: any) => {
     let url = ''
     if (pUrl.endsWith('/') || pUrl.length === 0) {
-      url = (pUrl + item.path)
+      url = pUrl + item.path
     } else {
-      url = (pUrl + '/' + item.path)
+      url = pUrl + '/' + item.path
     }
     if (item.children) {
       router2map(item.children, url)
