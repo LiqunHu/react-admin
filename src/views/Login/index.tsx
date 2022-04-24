@@ -1,5 +1,5 @@
 import './style.css'
-import React, { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { Form, Input, Button } from 'antd'
@@ -11,7 +11,6 @@ import { login } from '@/store/dashboardSlice'
 function Login() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const [logindata] = useState({})
   const [loginForm] = Form.useForm()
 
   const onLogin = async (values: any) => {

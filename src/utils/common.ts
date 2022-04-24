@@ -18,11 +18,7 @@ const loadJs = function (urlstr: string) {
     script.src = urlstr
     script.onerror = reject
     script.onload = script.onreadystatechange = function () {
-      if (
-        !this.readyState ||
-        this.readyState === 'loaded' ||
-        this.readyState === 'complete'
-      ) {
+      if (!this.readyState || this.readyState === 'loaded' || this.readyState === 'complete') {
         // Handle memory leak in IE
         script.onload = script.onreadystatechange = null
         resolve('loaded')
@@ -48,11 +44,7 @@ const loadCss = function (cssstr: string) {
     link.href = cssstr
     link.onerror = reject
     link.onload = link.onreadystatechange = function () {
-      if (
-        !this.readyState ||
-        this.readyState === 'loaded' ||
-        this.readyState === 'complete'
-      ) {
+      if (!this.readyState || this.readyState === 'loaded' || this.readyState === 'complete') {
         // Handle memory leak in IE
         link.onload = link.onreadystatechange = null
         resolve('loaded')
@@ -85,23 +77,23 @@ const aesEncryptModeCFB = function (msg: string, pwd: string) {
   return [magicNo, identifyCode]
 }
 
-const success = function(msg: string) {
+const success = function (msg: string) {
   message.success(msg)
 }
 
-const info = function(msg: string) {
+const info = function (msg: string) {
   message.info(msg)
 }
 
-const fault = function(err: any) {
+const fault = function (err: any) {
   console.error(err)
 }
 
-const warning = function(msg: string) {
+const warning = function (msg: string) {
   message.warning(msg)
 }
 
-const error = function(msg: string) {
+const error = function (msg: string) {
   message.error(msg)
 }
 
@@ -177,11 +169,7 @@ const clearEmptyParams = (params: any) => {
  * @param type 'day' 'month' 'minute' 'seconds'
  * @returns {number}
  */
-const diff = (
-  start: any,
-  end: any,
-  type: 'day' | 'month' | 'minute' | 'seconds'
-) => {
+const diff = (start: any, end: any, type: 'day' | 'month' | 'minute' | 'seconds') => {
   if (!start || !end) {
     return 0
   }
@@ -193,7 +181,8 @@ const diff = (
 const isFloat = function (v: string) {
   return /^-?\d*\.\d+$/.test(v)
 }
-export default {
+
+const exportFunc = {
   loadJs,
   loadCss,
   aesEncryptModeCFB,
@@ -215,3 +204,5 @@ export default {
   diff,
   isFloat,
 }
+
+export default exportFunc

@@ -19,15 +19,7 @@ function SystemApiControl() {
   const [actNode, setActNode] = useState(Object.create(null))
   const [apiType, setApiType] = useState('0')
 
-  const initPage = async () => {
-    try {
-      let response = await request.post(apiUrl + 'init', {})
-      setPagePara(response.data.info)
-      await getTreeData()
-    } catch (error) {
-      common.fault(error)
-    }
-  }
+  
 
   const getTreeData = async () => {
     let response = await request.post(apiUrl + 'search', {})
@@ -35,7 +27,7 @@ function SystemApiControl() {
   }
 
   const renderTreeNode = (nodeData: any) => {
-    if (nodeData.systemmenu_id != 0) {
+    if (nodeData.systemmenu_id !== 0) {
       return (
         <span className="tree-node">
           <span> {nodeData.name}</span>
@@ -197,6 +189,15 @@ function SystemApiControl() {
   }
 
   useEffect(() => {
+    const initPage = async () => {
+      try {
+        let response = await request.post(apiUrl + 'init', {})
+        setPagePara(response.data.info)
+        await getTreeData()
+      } catch (error) {
+        common.fault(error)
+      }
+    }
     initPage()
   }, [])
 
