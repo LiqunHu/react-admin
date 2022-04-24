@@ -19,8 +19,6 @@ function SystemApiControl() {
   const [actNode, setActNode] = useState(Object.create(null))
   const [apiType, setApiType] = useState('0')
 
-  
-
   const getTreeData = async () => {
     let response = await request.post(apiUrl + 'search', {})
     setTreeData(response.data.info)
