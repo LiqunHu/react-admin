@@ -14,7 +14,7 @@ function Login() {
 
   const onLogin = async (values: any) => {
     try {
-      const encInfo = common.aesEncryptModeCFB(values.username, values.password)
+      const identify_code = common.aesEncryptModeECB(values.username, values.password)
       // let response = await request.post('/v1/api/node/auth/signin', {
       //   identify_code: 'Sxc6dbdIeNEMnj1nCF6ZaA==',
       //   login_type: 'ADMIN',
@@ -23,8 +23,7 @@ function Login() {
       // })
       const response = await request.post('/v1/api/node/auth/signin', {
         username: values.username,
-        identify_code: encInfo[1],
-        magic_no: encInfo[0],
+        identify_code: identify_code,
         login_type: 'ADMIN',
       })
       const userInfo = response.data.info
